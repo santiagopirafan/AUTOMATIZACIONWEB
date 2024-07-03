@@ -20,6 +20,7 @@ public class RegistroPages {
 
     public void clicksing() {
 
+
         chromeDriver.findElement(btn_registro).click();
 
         try {
