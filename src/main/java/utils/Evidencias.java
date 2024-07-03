@@ -250,7 +250,7 @@ public class Evidencias {
 
         run = paragraph.createRun();
 
-        String imgFile = "src/test/resources/imagenes/logoAllianz.png";
+        String imgFile = "";
         run.addPicture(new FileInputStream(imgFile), XWPFDocument.PICTURE_TYPE_PNG, imgFile, Units.toEMU(140),
                 Units.toEMU(40));
 
@@ -261,7 +261,7 @@ public class Evidencias {
         paragraph.setAlignment(ParagraphAlignment.CENTER);
 
         run = paragraph.createRun();
-        run.setText("ALLIANZ | NTT DATA | Confidencial");
+        run.setText("");
 
         FileOutputStream outStream = null;
         try {

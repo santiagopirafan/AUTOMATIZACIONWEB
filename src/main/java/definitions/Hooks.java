@@ -12,6 +12,7 @@ import utils.Cronometro;
 import utils.Evidencias;
 import utils.ScreenShootsUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +25,7 @@ public class Hooks {
     public static WebDriver CHROME_DRIVER;
 
     private static WebDriver driver;
+
 
 
     public static WebDriver getChromeDriver() {
@@ -39,6 +41,8 @@ public class Hooks {
 
     @Before
     public void setUP(Scenario scenario) {
+
+
         Serenity.setSessionVariable("scenario").to(scenario);
 
         System.out.println("-----******************** INICIO DE TEST ********************-----");
@@ -48,14 +52,15 @@ public class Hooks {
                 System.setProperty("webdriver.chrome.driver",SystemEnvironmentVariables.createEnvironmentVariables().getProperty("webdriver.chrome.driver"));
                 iniciarChrome();
                 break;
-
-
-
-
-
         }
+        System.setProperty("RutaEvidencias", System.getProperty("user.dir") + File.separator + "Evidencias" + File.separator + scenario.getName().split("_")[0]);
+        new File(System.getProperty("user.dir") + File.separator + "Evidencias" + File.separator + scenario.getName().split("_")[0]).mkdirs();
+        evidencias.eliminarImagenes(System.getProperty("RutaEvidencias"));
 
         Serenity.setSessionVariable("chromeDriver").to(CHROME_DRIVER);
+        cronometro.iniciarCronometro();
+
+
 
     }
     @After
